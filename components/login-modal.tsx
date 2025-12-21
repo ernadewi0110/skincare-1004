@@ -1,34 +1,37 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { useState, useEffect } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface LoginModalProps {
-  open: boolean
-  onClose: () => void
+  open: boolean;
+  onClose: () => void;
+  initialIsLogin?: boolean;
 }
 
-export function LoginModal({ open, onClose }: LoginModalProps) {
-  const [isLogin, setIsLogin] = useState(true)
+export function LoginModal({ open, onClose, initialIsLogin = true }: LoginModalProps) {
+  const [isLogin, setIsLogin] = useState(true);
+
+  useEffect(() => {
+    if (open) setIsLogin(initialIsLogin);
+  }, [open, initialIsLogin]);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle login/register logic here
-    onClose()
-  }
+    onClose();
+  };
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-light text-center">
-            {isLogin ? "Welcome Back" : "Create Account"}
-          </DialogTitle>
+          <DialogTitle className="text-2xl font-light text-center">{isLogin ? "Welcome Back" : "Create Account"}</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
@@ -61,16 +64,12 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
           </Button>
 
           <div className="text-center">
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
+            <button type="button" onClick={() => setIsLogin(!isLogin)} className="text-sm text-muted-foreground hover:text-foreground">
               {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
             </button>
           </div>
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
