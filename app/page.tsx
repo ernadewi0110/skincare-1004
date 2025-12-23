@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { products as bestsellers } from "@/lib/products";
 
 export default function HomePage() {
   return (
@@ -8,9 +10,9 @@ export default function HomePage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-150 flex items-center justify-center overflow-hidden">
         <img src="/madagascar-landscape-with-mountains-and-nature.jpg" alt="Madagascar Landscape" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/40" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/40" />
 
         <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-light mb-6 text-balance">
@@ -23,18 +25,6 @@ export default function HomePage() {
               Discover the Icon
             </Button>
           </Link>
-        </div>
-      </section>
-
-      {/* Shop by Collection */}
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-light mb-8">Shop by Collection</h2>
-        <div className="flex gap-4 overflow-x-auto pb-4">
-          {["Ampoule", "Toner", "Cream", "Ingredients", "Skin IQ"].map((category) => (
-            <Link key={category} href="/shop" className="flex-shrink-0">
-              <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors">{category}</div>
-            </Link>
-          ))}
         </div>
       </section>
 
@@ -78,13 +68,71 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Our Story (in-page template) */}
+      <section id="our-story" className="py-20 px-4 bg-linear-to-b from-background to-muted/10">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-4xl font-light mb-4">Our Story</h2>
+          <p className="text-lg text-muted-foreground mb-8">Born from a passion to bring Madagascar's purest botanicals to the world, our journey began with a small team of botanists and formulators. We combine traditional harvesting practices with modern, science-driven formulations.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <img src="/madagascar-landscape-with-mountains-and-nature.jpg" alt="Our Story" className="w-full h-64 object-cover rounded-lg shadow-sm" />
+            <div className="text-left">
+              <h3 className="text-2xl font-medium mb-3">Sustainable sourcing</h3>
+              <p className="text-muted-foreground mb-4">We partner with local communities to harvest ingredients ethically, ensuring fair compensation and regenerative practices.</p>
+              <Link href="/our-story">
+                <Button className="bg-primary text-primary-foreground">Learn More</Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ingredients (in-page template) */}
+      <section id="ingredients" className="py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-light mb-6 text-center">Key Ingredients</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-card p-6 rounded-lg text-center">
+              <h4 className="font-medium mb-2">Centella Asiatica</h4>
+              <p className="text-sm text-muted-foreground">Soothes inflammation and supports the skin barrier with powerful triterpenoids.</p>
+            </div>
+            <div className="bg-card p-6 rounded-lg text-center">
+              <h4 className="font-medium mb-2">Madagascar Sea Moss</h4>
+              <p className="text-sm text-muted-foreground">Hydrating polysaccharides to lock moisture and improve skin texture.</p>
+            </div>
+            <div className="bg-card p-6 rounded-lg text-center">
+              <h4 className="font-medium mb-2">Natural Antioxidants</h4>
+              <p className="text-sm text-muted-foreground">Protects against environmental stressors while promoting radiance.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skin IQ (in-page template) */}
+      <section id="skin-iq" className="py-20 px-4 bg-secondary/10">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl font-light mb-4">Skin IQ</h2>
+          <p className="text-lg text-muted-foreground mb-6">Understand your skin better with simple tips and product matches tailored to common concerns.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-4 bg-card rounded-lg">
+              <h5 className="font-medium mb-2">Dryness</h5>
+              <p className="text-sm text-muted-foreground">Focus on humectants and occlusives — layer lightweight hydrators with richer creams at night.</p>
+            </div>
+            <div className="p-4 bg-card rounded-lg">
+              <h5 className="font-medium mb-2">Sensitivity</h5>
+              <p className="text-sm text-muted-foreground">Use fragrance-free, minimal-ingredient formulations and patch test new products.</p>
+            </div>
+            <div className="p-4 bg-card rounded-lg">
+              <h5 className="font-medium mb-2">Dullness</h5>
+              <p className="text-sm text-muted-foreground">Incorporate gentle exfoliants and antioxidant serums to restore brightness.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 }
 
-const bestsellers = [
-  { id: 1, name: "Centella Toning Toner", price: 24.0, image: "/centella-toner-bottle.jpg" },
-  { id: 2, name: "Centella Cream", price: 24.0, image: "/centella-cream-jar.jpg" },
-  { id: 3, name: "Madagascar Centella Ampoule", price: 24.0, image: "/centella-ampoule-bottle.jpg" },
-  { id: 4, name: "Hyalu-Cica Blue Serum", price: 34.0, image: "/blue-serum-bottle.jpg" },
-];
+// `bestsellers` imported from `lib/products`

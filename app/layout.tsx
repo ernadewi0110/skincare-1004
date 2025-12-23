@@ -7,9 +7,8 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "SKIN1004 - Madagascar Centella Skincare",
+  title: "SKIN1004",
   description: "Premium skincare from Madagascar with natural Centella ingredients",
-  generator: "v0.app",
 }
 
 export default function RootLayout({

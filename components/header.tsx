@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { LoginModal } from "@/components/login-modal";
+import { products } from "@/lib/products";
 
 export function Header() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -20,13 +21,13 @@ export function Header() {
           <Link href="/shop" className="text-sm hover:text-primary transition-colors">
             Shop
           </Link>
-          <Link href="/our-story" className="text-sm hover:text-primary transition-colors">
+          <Link href="#our-story" className="text-sm hover:text-primary transition-colors">
             Our Story
           </Link>
-          <Link href="/ingredients" className="text-sm hover:text-primary transition-colors">
+          <Link href="#ingredients" className="text-sm hover:text-primary transition-colors">
             Ingredients
           </Link>
-          <Link href="/skin-iq" className="text-sm hover:text-primary transition-colors">
+          <Link href="#skin-iq" className="text-sm hover:text-primary transition-colors">
             Skin IQ
           </Link>
         </nav>
@@ -38,9 +39,16 @@ export function Header() {
 
         {/* Right Side Icons */}
         <div className="flex items-center gap-6">
-          <button className="text-muted-foreground hover:text-foreground transition-colors">
-            <Search size={20} />
-          </button>
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className="text-muted-foreground hover:text-foreground transition-colors">
+                <Search size={20} />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-72 p-4">
+              <SearchBox onNavigate={() => { }} />
+            </PopoverContent>
+          </Popover>
           <Popover>
             <PopoverTrigger asChild>
               <button className="text-muted-foreground hover:text-foreground transition-colors">
@@ -77,5 +85,48 @@ export function Header() {
         <LoginModal open={modalOpen} onClose={() => setModalOpen(false)} initialIsLogin={initialIsLogin} />
       </div>
     </header>
+  );
+}
+
+function SearchBox({ onNavigate }: { onNavigate?: () => void }) {
+  const [query, setQuery] = useState("");
+
+  const filtered = products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase()));
+
+  return (
+    <div>
+      <label className="sr-only">Search products</label>
+      <input
+        autoFocus
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search products..."
+        className="w-full px-3 py-2 rounded-md border bg-background text-foreground mb-3"
+      />
+
+      <div className="max-h-48 overflow-auto">
+        {query === "" ? (
+          <div className="text-sm text-muted-foreground">Try searching: Centella, Ampoule, Cream</div>
+        ) : filtered.length === 0 ? (
+          <div className="text-sm text-muted-foreground">No products found.</div>
+        ) : (
+          <ul className="space-y-2">
+            {filtered.map((p) => (
+              <li key={p.id}>
+                <Link href={`/shop/${p.id}`} onClick={onNavigate} className="block p-2 rounded hover:bg-muted/50">
+                  <div className="flex items-center gap-3">
+                    <img src={p.image} alt={p.name} className="w-10 h-10 object-cover rounded" />
+                    <div>
+                      <div className="text-sm font-medium">{p.name}</div>
+                      <div className="text-xs text-muted-foreground">${p.price}</div>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
   );
 }
