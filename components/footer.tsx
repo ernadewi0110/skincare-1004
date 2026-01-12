@@ -34,7 +34,7 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
                         <Link href="/">
-                            <span className="text-2xl font-semibold tracking-tight">Madagascar Skin</span>
+                            <span className="text-2xl font-semibold tracking-tight">BeautyFest</span>
                         </Link>
                         <p className="text-sm text-muted-foreground mt-3 max-w-xs">Sourced from Madagascar's pristine ecosystems — gentle, potent, sustainably harvested skincare.</p>
                         <div className="mt-4 flex items-center gap-3">
@@ -56,7 +56,7 @@ export function Footer() {
                         <div>
                             <h4 className="text-sm font-medium mb-3">Company</h4>
                             <ul className="space-y-2 text-sm">
-                                <li><Link href="#our-story" className="hover:text-foreground">Our Story</Link></li>
+                                <li><Link href="#our-story" className="hover:text-foreground">Key Ingredients</Link></li>
                                 <li><Link href="#skin-iq" className="hover:text-foreground">Skin IQ</Link></li>
                                 <li><Link href="/cart" className="hover:text-foreground">Cart</Link></li>
                             </ul>

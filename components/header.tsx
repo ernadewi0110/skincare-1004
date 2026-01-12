@@ -18,6 +18,9 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Navigation */}
         <nav className="flex items-center gap-8">
+          <Link href="/" className="text-sm hover:text-primary transition-colors">
+            Beranda
+            </Link>
           <Link href="/shop" className="text-sm hover:text-primary transition-colors">
             Shop
           </Link>
@@ -34,7 +37,7 @@ export function Header() {
 
         {/* Logo */}
         <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-          <h1 className="text-xl font-light tracking-[0.3em]">SKIN1004</h1>
+          <h1 className="text-xl font-light tracking-[0.3em]">BEAUTYFEST</h1>
         </Link>
 
         {/* Right Side Icons */}
