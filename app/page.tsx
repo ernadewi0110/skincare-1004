@@ -51,24 +51,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Product Showcase */}
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-            <img src="/madagascar-centella-ampoule-bottle-on-moss.jpg" alt="Featured Product" className="w-full h-full object-cover" />
-          </div>
-          <div className="flex flex-col justify-center">
-            <h2 className="text-4xl font-light mb-4">Madagascar Centella Ampoule</h2>
-            <p className="text-muted-foreground text-lg mb-6 leading-relaxed">Experience the pure essence of Madagascar with our signature Centella Ampoule. This lightweight serum soothes, hydrates, and strengthens your skin barrier.</p>
-            <Link href="/shop/1">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground w-fit">
-                Shop Now
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Our Story (in-page template) */}
       <section id="our-story" className="py-20 px-4 bg-linear-to-b from-background to-muted/10">
         <div className="max-w-5xl mx-auto text-center">

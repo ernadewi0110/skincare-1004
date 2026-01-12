@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Header } from "@/components/header"
-import { Button } from "@/components/ui/button"
-import { X } from "lucide-react"
-import { LoginModal } from "@/components/login-modal"
+import { useState } from "react";
+import { Header } from "@/components/header";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
+import { LoginModal } from "@/components/login-modal";
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([
     { id: 1, name: "Madagascar Centella Ampoule", price: 24.0, quantity: 1, image: "/centella-ampoule.jpg" },
     { id: 2, name: "Centella Toning Toner", price: 24.0, quantity: 1, image: "/centella-toner.jpg" },
-  ])
-  const [showLoginModal, setShowLoginModal] = useState(false)
+  ]);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const removeItem = (id: number) => {
-    setCartItems(cartItems.filter((item) => item.id !== id))
-  }
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
-  const shipping = 0 // Free shipping
-  const total = subtotal + shipping
+  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const shipping = 0; // Free shipping
+  const total = subtotal + shipping;
 
   const handleCheckout = () => {
-    setShowLoginModal(true)
-  }
+    setShowLoginModal(true);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -51,9 +51,7 @@ export default function CartPage() {
               </div>
             ))}
 
-            {cartItems.length === 0 && (
-              <div className="text-center py-12 text-muted-foreground">Your cart is empty</div>
-            )}
+            {cartItems.length === 0 && <div className="text-center py-12 text-muted-foreground">Your cart is empty</div>}
           </div>
 
           {/* Order Summary */}
@@ -76,11 +74,7 @@ export default function CartPage() {
                 </div>
               </div>
 
-              <Button
-                onClick={handleCheckout}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-                disabled={cartItems.length === 0}
-              >
+              <Button onClick={handleCheckout} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={cartItems.length === 0}>
                 Checkout
               </Button>
             </div>
@@ -90,5 +84,5 @@ export default function CartPage() {
 
       <LoginModal open={showLoginModal} onClose={() => setShowLoginModal(false)} />
     </div>
-  )
+  );
 }
