@@ -35,12 +35,11 @@ export default function ProductDetailPage() {
           <div>
             <h1 className="text-4xl font-light mb-2">{product?.name}</h1>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl font-semibold">${product?.price}</span>
-              
+              <span className="text-2xl font-semibold">Rp. {product?.price}</span>
             </div>
 
             <p className="text-muted-foreground leading-relaxed mb-6">
-              A concentrated ampoule enriched with Centella Asiatica extract from Madagascar to intensively soothe irritated skin, reduce redness, restore optimal moisture balance, and reveal your natural glow.
+              {product?.Description}
             </p>
 
             {/* Quantity Selector */}
@@ -73,9 +72,7 @@ export default function ProductDetailPage() {
               </div>
 
               <div className="text-sm text-muted-foreground leading-relaxed">
-                {activeTab === "What it Is" && (
-                  <p>{product?.whatitis}</p>
-                )}
+                {activeTab === "What it Is" && <p>{product?.whatitis}</p>}
                 {activeTab === "Product Benefit" && <p>{product?.Benefits}</p>}
                 {activeTab === "Key Ingredients" && <p>{product?.ingreditions}</p>}
               </div>
